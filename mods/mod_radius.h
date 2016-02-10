@@ -21,7 +21,7 @@ void mod_radius(vector <double> &f,vector <double> &mu,Matrix &chiMatrix,Matrix 
         fE_hom=homogfE(mu,chiMatrix,f);                 //calculate homog. fE
         omega(w);                                       //Initiate omega field
         secant(w,phi,eta,Ns,chi,chiMatrix,mu,f,2*Nr/5);  //Find tensionless mmb
-        mu_vec[counter] = mu[2];                        //Save chemical potential
+        mu_vec[counter] = mu[5];                        //Save chemical potential
         
         volume=vol();                                 //calculate volume
         r_0=1.0;

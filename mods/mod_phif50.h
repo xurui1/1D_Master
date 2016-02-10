@@ -1,7 +1,8 @@
-/**************My function for calculating the concentration profile for an FA = 0.5 membrane***********************************************/
+/****My function for calculating the concentration profile for an FA = 0.5 membrane*****************/
 
 void mod_phif50(vector <double> &f,vector <double> &mu,Matrix &chiMatrix,Matrix &w,Matrix &phi,vector <double> &eta,vector <int> &Ns,vector <double> &chi){
     
+    //set fA = fB = 0.5
     for (int i=0;i<ChainType-1;i++){
         f[i]=0.5;
         Ns[i]=f[i]*Ds;

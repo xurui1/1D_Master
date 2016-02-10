@@ -7,7 +7,6 @@ void parameters(vector <double> &chi,vector <double> &f, vector <int> &Ns, vecto
     
     //initial settings
     initial=3;
-    Coord=1; //if 1->Cartesian, if 2->Cylindrical, if 3->Spherical coordinate system
     
     double chi_input;
     
@@ -30,7 +29,7 @@ void parameters(vector <double> &chi,vector <double> &f, vector <int> &Ns, vecto
     
     //Chemical potential array
     if (poly==0){
-        mu[0]=-20.0;    //AB -A
+        mu[0]=-50.0;    //AB -A
         mu[1]=mu[0];    //AB -B
         mu[2]=0.0;      //ABA -A
         mu[3]=mu[2];    //ABA -B
@@ -40,12 +39,12 @@ void parameters(vector <double> &chi,vector <double> &f, vector <int> &Ns, vecto
     else if (poly==1){
         mu[0]=0.0;    //AB -A
         mu[1]=mu[0];    //AB -B
-        mu[2]=-20.0;      //ABA -A
+        mu[2]=-50.0;      //ABA -A
         mu[3]=mu[2];    //ABA -B
         mu[4]=mu[2];    //ABA -A
         mu[5]=-5.0;    //C
     }
-    else{
+    else if (poly==2){
         mu[0]=0.0;      //Other
         mu[1]=0.0;
         mu[2]=0.0;

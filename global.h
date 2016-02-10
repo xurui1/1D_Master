@@ -3,8 +3,8 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
-#include <string>
-#include <stdlib.h>    //Include standard fucntion libraries
+#include <string.h>
+#include <stdlib.h>    //Include standard function libraries
 #include <cmath>      //Use the math function libraries
 #include <time.h>      //Call system time libraries to define the integer seed for random numbers
 
@@ -22,7 +22,7 @@ double phi_bulk;
 double ds,dr;
 int initial;
 int Coord;
-int poly=0;
+int poly;
 
 //define my update parameters
 double gamma_up = 0.05;

@@ -91,7 +91,7 @@ double FreeEnergy(Matrix &w, Matrix &phi, vector <double> &eta, vector <int> &Ns
         
         //Print free energy, difference in free energy, change in omega field to screen
         if (iter%100==0 && out_loop==1){std::cout<<iter<<" fE:"<<currentfE<< " dfE:"<<currentfE-fE_hom<<" " << deltaW<<" "<<fE_hom<<" "<<loop[0]<<" "<<loop[1]<<std::endl;}
-        else if  (iter%100==0 && out_loop==0){std::cout<<iter<<" fE:"<<currentfE<< " dfE:"<<currentfE-fE_hom<<" " << deltaW<<" "<<fE_hom<<" "<<loop[0]<<" "<<loop[1]<<std::endl;}
+        else if  (iter%100==0 && out_loop==0){std::cout<<iter<<" fE:"<<currentfE<< " dfE:"<<currentfE-fE_hom<<" " << deltaW<<" "<<fE_hom<<std::endl;}
 
         
 
