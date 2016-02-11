@@ -1,21 +1,25 @@
-void mod_loop(vector <double> &f,vector <double> &mu,Matrix &chiMatrix,Matrix &w,Matrix &phi,vector <double> &eta,vector <int> &Ns, vector <double> &chi,vector <double> &A, vector <double> &B, vector <double> &C, int nfa, int nradii){
+void mod_loop(vector <double> &f,vector <double> &mu,Matrix &chiMatrix,Matrix &w,Matrix &phi,vector <double> &eta,vector <int> &Ns, vector <double> &chi, int nradii){
     
     vector <double> r_0vector(nradii+1);    //Box radius
     vector <double> mu_calc(5);
     vector <double>  rad_test(5);
     vector <double> fA(5);
+    vector <double> A(1);
+    vector <double> B(1);
+    vector <double> C(1);
 
     
     double fE_hom;
     double volume;
     double displacer;
-    double avgmiddle=0.0,avghalf=0.0;
     
     int counter=0;
     int ds_increment = 20;
     
     
     for (int dds=0;f[0]<=0.7;dds+=ds_increment){
+        double avgmiddle=0.0,avghalf=0.0;
+
         updateparameters(f,Ns,dds);
         fA[counter] = f[0];
         fE_hom=homogfE(mu,chiMatrix,f);                 //calculate homog. fE
@@ -31,14 +35,16 @@ void mod_loop(vector <double> &f,vector <double> &mu,Matrix &chiMatrix,Matrix &w
             int ihalf=mmb_half(phi,imax,2*Nr/5);
             avgmiddle+=(double)imax*dr;
             avghalf+=(double)ihalf*dr;
+            
+            r_0*=3.0;
         }
         avgmiddle/=4.0;
         avghalf/=4.0;
-        
+        rad_test[counter] = avghalf;
         counter++;
         
     }
-    curvefit(fA,rad_test,nfa,1,A,B,C);
+    curvefit(fA,rad_test,5,1,A,B,C);
     
     counter =0;
     for (int dds=0; f[0]<=0.7 ;dds+= ds_increment){
@@ -58,12 +64,10 @@ void mod_loop(vector <double> &f,vector <double> &mu,Matrix &chiMatrix,Matrix &w
             omega(w);
             double pin_location=10.8-A[0]-(B[0]*f[0])-(C[0]*f[0]*f[0]);
 
-            displacer=FreeEnergy(w,phi,eta,Ns,chi,chiMatrix,mu,volume,f,pin_location,0);
+            displacer=FreeEnergy(w,phi,eta,Ns,chi,chiMatrix,mu,volume,f,pin_location,1);
             
            
         }
-       
-        
        
         
         counter++;

@@ -6,9 +6,12 @@
 #include <string.h>
 #include <stdlib.h>    //Include standard function libraries
 #include <cmath>      //Use the math function libraries
-#include <time.h>      //Call system time libraries to define the integer seed for random numbers
+#include <ctime>
+#include <chrono>
 
 using namespace std;
+using namespace chrono;
+
 
 #define Nr 200
 #define Ds 200

@@ -60,26 +60,26 @@ int main( int argc, char* argv[] ){
     parameters(chi,f,Ns,mu);
     Xmatrix(chiMatrix,chi);
     
-    if(atoi(argv[2])==0){
+    if(atoi(argv[3])==0){
         mod_0(f,mu,chiMatrix,w,phi,eta,Ns,chi);
     }
-    else if(atoi(argv[2])==1){
+    else if(atoi(argv[3])==1){
         mod_radius(f,mu,chiMatrix,w,phi,eta,Ns,chi,A,B,C,nfa,mu_vector); //find rad to centre mmb
         parameters(chi,f,Ns,mu); //reset parameters
         mod_phi(f,mu,chiMatrix,w,phi,eta,Ns,chi,nfa,A,B,C,nradii,dFE,mu_vector);
     }
-    else if(atoi(argv[2])==2){
+    else if(atoi(argv[3])==2){
         mod_radius(f,mu,chiMatrix,w,phi,eta,Ns,chi,A,B,C,nfa,mu_vector); //find rad to centre mmb
         parameters(chi,f,Ns,mu); //reset parameters
         mod_main(f,mu,chiMatrix,w,phi,eta,Ns,chi,nfa,A,B,C,nradii,dFE,mu_vector);
     }
-    else if(atoi(argv[2])==3){
+    else if(atoi(argv[3])==3){
         mod_phif50(f,mu,chiMatrix,w,phi,eta,Ns,chi);
     }
-    else if (atoi(argv[2])==4){
+    else if (atoi(argv[3])==4){
         mod_width(f,mu,chiMatrix,w,phi,eta,Ns,chi,nfa);
     }
-    else if (atoi(argv[2])==5){
+    else if (atoi(argv[3])==5){
         mod_loop(f,mu,chiMatrix,w,phi,eta,Ns,chi,nfa);
     }
     else{

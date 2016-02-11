@@ -1,0 +1,27 @@
+——————————————————————
+Contributors:
+——————————————————————
+
+Theory:
+worked out by Rui Xu [McMaster University]
+
+code:
+Is written by Rui Xu [McMaster University]
+Language: C/C++
+
+
+_____________________
+Purpose:
+_____________________
+The purpose of this code is to solve self-consistent field equations for an AB, ABA and A diblock, triblock, and homopolymer system. In this program, we consider three geometries: 1D planar, 1D cylindrical, and 1D spherical. Output options include concentration profiles, free energies, looping fractions, etc.
+
+I have written a variety of modifications that allow for different outputs and initial conditions. 
+Mod 0: a simple test to make sure SCFT works. 
+Mod 1: calculate concentration profiles for fA = 0.3 - 0.7. 
+Mod 2: calculate bending moduli for fA = 0.3 - 0.7. 
+Mod 3: output a concentration profile for fA = 0.5. 
+Mod 4: calculate the membrane width for fA = 0.3 - 0.7.
+Mod 5: output specific looping fractions for fA = 0.3, 0.4, 0.5, 0.6, and 0.7. 
+
+In order to compile the code, simply write ‘make’. In order to run the code, enter
+ ‘./main arg1 arg2 arg3’. Arg 1 is the geometry: P is planar, C is cylindrical, S is spherical. Arg 2 is the types of polymer in the system: T is triblock, D is diblock, and B is a blend of moth. 
