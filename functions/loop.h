@@ -1,6 +1,6 @@
 /*************This is my function for calulating the looping fraction for triblock************************/
 
-void calcloop(Matrix &qA2, Matrix &qA2LL, Matrix &qB2LL, Matrix &qA2LR, Matrix &qB2LR, Matrix &qA3,vector <int> &Ns, Matrix &w, vector <double> &mu,int imax, vector <double> &loop){
+void calcloop(double **qA2,double **qA2LL,double **qB2LL,double **qA2LR,double **qB2LR,double **qA3,int *Ns,double **w,double *mu,int imax,double *loop){
     
     double Q_ABA;
 
@@ -38,10 +38,10 @@ void calcloop(Matrix &qA2, Matrix &qA2LL, Matrix &qB2LL, Matrix &qA2LR, Matrix &
     
     
     //Calculate probability of looping
-    for (int i=0;i<imax;i++){
+    for (int i=0;i<Nr/2;i++){
         loop[0]+=(qB2LL[i][Ns[3]])*(qA2[i][Ns[2]])/(Q_ABA);
     }
-    for (int i=imax;i<Nr;i++){
+    for (int i=Nr/2;i<Nr;i++){
         loop[1]+=(qB2LR[i][Ns[3]])*(qA2[i][Ns[2]])/(Q_ABA);
     }
 

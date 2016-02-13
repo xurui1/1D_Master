@@ -1,6 +1,6 @@
 //Here I calculate the homogeneous free energy using SCFT
 
-double homogfE(vector <double> mu, Matrix chimatrix, vector <double> f){
+double homogfE(double *mu, double **chimatrix,double *f){
     
     //homogeneous concentrations
     vector<double>p_ave(ChainType);
@@ -44,12 +44,12 @@ double homogfE(vector <double> mu, Matrix chimatrix, vector <double> f){
         p_ave[1]=exp(mu[1]-w_ave[0]*f[0]-w_ave[1]*f[1])*f[1];
         
         //triblock concentration
-        p_ave[2]=exp(kappa_ABA*mu[2]-w_ave[2]*f[2]/2.0-w_ave[3]*f[3]-w_ave[4]*f[4]/2.0)*f[2]/2.0;
-        p_ave[3]=exp(kappa_ABA*mu[3]-w_ave[2]*f[2]/2.0-w_ave[3]*f[3]-w_ave[4]*f[4]/2.0)*(2.0*f[3])/2.0;
-        p_ave[4]=exp(kappa_ABA*mu[4]-w_ave[2]*f[2]/2.0-w_ave[3]*f[3]-w_ave[4]*f[4]/2.0)*f[4]/2.0;
+        p_ave[2]=exp(kappa_ABA*mu[2]-w_ave[2]*f[2]/2.0-w_ave[3]*f[3]-w_ave[4]*f[4]/2.0)*f[2]/kappa_ABA;
+        p_ave[3]=exp(kappa_ABA*mu[3]-w_ave[2]*f[2]/2.0-w_ave[3]*f[3]-w_ave[4]*f[4]/2.0)*(2.0*f[3])/kappa_ABA;
+        p_ave[4]=exp(kappa_ABA*mu[4]-w_ave[2]*f[2]/2.0-w_ave[3]*f[3]-w_ave[4]*f[4]/2.0)*f[4]/kappa_ABA;
         
         //Homopolymer concentration
-        p_ave[5]=exp(kappaC*(mu[5]-w_ave[5]));
+        p_ave[5]=exp(kappaC*(mu[5]-w_ave[5]))/kappaC;
         
         //change in chemical potential
         for (int i=0;i<ChainType;i++){

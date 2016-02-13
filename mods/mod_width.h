@@ -1,8 +1,7 @@
-void mod_width(vector <double> &f,vector <double> &mu,Matrix &chiMatrix,Matrix &w, Matrix &phi,vector <double> &eta,vector <int> &Ns,vector <double> &chi, int nfa){
+void mod_width(double *f,double *mu,double **chiMatrix,double **w,double **phi,double *eta,int *Ns,double *chi, int nfa){
     
     
     double fE_hom;
-    double volume;
     double displacer;
     
     int tempcoord = Coord;
@@ -32,13 +31,11 @@ void mod_width(vector <double> &f,vector <double> &mu,Matrix &chiMatrix,Matrix &
             fE_hom=homogfE(mu,chiMatrix,f);                 //calculate homog. fE
             omega(w);                                       //Initiate omega field
             secant(w,phi,eta,Ns,chi,chiMatrix,mu,f,2*Nr/5);  //Find tensionless mmb
-            volume=vol();                                 //calculate volume
             r_0=1.0;
         
-            volume=vol();
             omega(w);
             
-            displacer=FreeEnergy(w,phi,eta,Ns,chi,chiMatrix,mu,volume,f,2*Nr/5,0);
+            displacer=FreeEnergy(w,phi,eta,Ns,chi,chiMatrix,mu,f,2*Nr/5,0);
             int imax = mmbcentre(phi);
             int imax_left=mmbleft(phi,imax);
             int imax_right=mmbright(phi,imax);

@@ -1,12 +1,12 @@
-void mod_radius(vector <double> &f,vector <double> &mu,Matrix &chiMatrix,Matrix &w,Matrix &phi,vector <double> &eta,vector <int> &Ns, vector <double> &chi,vector <double> &A, vector <double> &B, vector <double> &C, int nfa, vector <double> &mu_vec){
+void mod_radius(double *f,double *mu,double **chiMatrix,double **w,double **phi,double *eta,int *Ns, double *chi,double *A, double *B, double *C, int nfa, double *mu_vec){
     
     
     double fE_hom;
     double volume;
     double displacer;
     
-    vector<double> fA(nfa);
-    vector<double> test_rad1(nfa);
+    double *fA=create_1d_double_array(nfa,"fA");
+    double *test_rad1=create_1d_double_array(nfa,"test_rad");
     
     ofstream outputrad_fa;
     outputrad_fa.open("./results/outputrad_fa.dat");
@@ -32,7 +32,7 @@ void mod_radius(vector <double> &f,vector <double> &mu,Matrix &chiMatrix,Matrix 
             volume=vol();
             omega(w);
             
-            displacer=FreeEnergy(w,phi,eta,Ns,chi,chiMatrix,mu,volume,f,2*Nr/5,0);
+            displacer=FreeEnergy(w,phi,eta,Ns,chi,chiMatrix,mu,f,2*Nr/5,0);
             int imax=mmbcentre(phi);
             int ihalf=mmb_half(phi,imax,2*Nr/5);
 

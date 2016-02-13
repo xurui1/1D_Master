@@ -1,6 +1,18 @@
 //Here I solve the propagators for the diblock and the triblock and the homopolymer
 
-void diblock(Matrix &qA1,Matrix &qdagA1,Matrix &qB1,Matrix &qdagB1,Matrix w,vector <int> Ns){
+void diblock(double **qA1,double **qdagA1,double **qB1,double **qdagB1,double **w,int *Ns){
+    
+    //empty propagators
+    for (int i=0;i<Nr;i++){
+        for (int j=0;j<=Ns[0];j++){
+            qA1[i][j]=0.0;
+            qdagA1[i][j]=0.0;
+        }
+        for (int j=0;j<=Ns[1];j++){
+            qB1[i][j]=0.0;
+            qdagB1[i][j]=0.0;
+        }
+    }
     
     // Here is the for loop for setting the A propagator initial conditions to 1.0
     for(int i=0;i<Nr;i++){
@@ -36,9 +48,19 @@ void diblock(Matrix &qA1,Matrix &qdagA1,Matrix &qB1,Matrix &qdagB1,Matrix w,vect
     
 }
 
-void triblock(Matrix &qA2,Matrix &qB2,Matrix &qA3, Matrix w, vector <int> Ns){
+void triblock(double **qA2,double **qB2,double **qA3,double **w,int *Ns){
     //Triblock is symmetric so we don't need complementary propagator
     
+    //empty propagators
+    for (int i=0;i<Nr;i++){
+        for (int j=0;j<=Ns[2];j++){
+            qA2[i][j]=0.0;
+            qA3[i][j]=0.0;
+        }
+        for (int j=0;j<=Ns[3];j++){
+            qB2[i][j]=0.0;
+        }
+    }
     //Set initial condition for A2 forward propagator
     for (int i=0;i<Nr;i++){
         qA2[i][0]=1.0;
@@ -65,7 +87,13 @@ void triblock(Matrix &qA2,Matrix &qB2,Matrix &qA3, Matrix w, vector <int> Ns){
         
 }
 
-void homopolymer(Matrix &qC,Matrix w,vector <int> Ns){
+void homopolymer(double **qC,double **w,int *Ns){
+    
+    for (int i=0;i<Nr;i++){
+        for (int j=0;j<=Ns[5];j++){
+            qC[i][j]=0.0;
+        }
+    }
     
     //Set initial condition for homopolymer propagator
     for (int i=0;i<Nr;i++){

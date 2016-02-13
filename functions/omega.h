@@ -1,6 +1,6 @@
 /***************************Here I get initial omega fields*********************************/
 
-void omega(Matrix  &w){
+void omega(double **w){
     
     int i,x;
     

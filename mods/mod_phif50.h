@@ -1,6 +1,6 @@
 /****My function for calculating the concentration profile for an FA = 0.5 membrane*****************/
 
-void mod_phif50(vector <double> &f,vector <double> &mu,Matrix &chiMatrix,Matrix &w,Matrix &phi,vector <double> &eta,vector <int> &Ns,vector <double> &chi){
+void mod_phif50(double *f,double *mu,double **chiMatrix,double **w,double **phi,double *eta,int *Ns,double *chi){
     
     //set fA = fB = 0.5
     for (int i=0;i<ChainType-1;i++){
@@ -37,7 +37,7 @@ void mod_phif50(vector <double> &f,vector <double> &mu,Matrix &chiMatrix,Matrix 
 
     
     //calculate free energy minus homogeneneous free energy
-    double dFE=FreeEnergy(w,phi,eta,Ns,chi,chiMatrix,mu,volume,f,pin,1);
+    double dFE=FreeEnergy(w,phi,eta,Ns,chi,chiMatrix,mu,f,pin,1);
     
     
         

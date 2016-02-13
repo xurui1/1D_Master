@@ -1,12 +1,12 @@
-void mod_main(vector <double> &f,vector <double>&mu,Matrix &chiMatrix,Matrix &w,Matrix &phi,vector <double> &eta,vector <int> &Ns, vector <double> &chi,int nfa,vector <double> &A,vector <double> &B,vector <double> &C, int nradii, vector <double> &dFE, vector <double> &mu_vec){
+void mod_main(double *f,double *mu,double **chiMatrix,double **w,double **phi,double *eta,int *Ns, double *chi,int nfa,double *A,double *B,double *C, int nradii, double *dFE, double *mu_vec){
     
-    vector <double> r_0vector(nradii+1);    //Box radius
-    vector <double> Rad(nradii);            //Radius for fitting
-    vector <double> diameter(nradii);       //membrane diameter
-    vector <double> Curv(nradii);           //curvature
-    vector <double> Curvsq(nradii);         //squared curvature
+    double *r_0vector=create_1d_double_array(nradii+1,"r_0vector");    //Box radius
+    double *Rad= create_1d_double_array(nradii,"Rad");            //Radius for fitting
+    double *diameter=create_1d_double_array(nradii,"diameter");       //membrane diameter
+    double *Curv=create_1d_double_array(nradii,"Curv");           //curvature
+    double *Curvsq=create_1d_double_array(nradii,"Curvsq");         //squared curvature
     
-    Matrix fitting(6,Row(nfa));             //matrix of fitting constants
+    double **fitting=create_2d_double_array(ChainType,nfa,"fitting");             //matrix of fitting constants
     
     //open main output file
     ofstream outFile2;
@@ -63,7 +63,7 @@ void mod_main(vector <double> &f,vector <double>&mu,Matrix &chiMatrix,Matrix &w,
             omega(w);
             
             //calculate free energy minus homogeneneous free energy
-            dFE[radius]=FreeEnergy(w,phi,eta,Ns,chi,chiMatrix,mu,volume,f,pin,1);
+            dFE[radius]=FreeEnergy(w,phi,eta,Ns,chi,chiMatrix,mu,f,pin,1);
             OP = calcOP(phi,volume);                    //calculate order parameter
             diameter[radius] = calc_excess(phi,volume); //calculate copolymer excess
             avgdiameter+=diameter[radius];

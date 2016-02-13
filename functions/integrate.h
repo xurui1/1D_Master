@@ -1,4 +1,4 @@
-double integrate (vector <double> function, int N, int M){
+double integrate (double *function, int N, int M){
     
     double result=0.0;
     
@@ -17,7 +17,7 @@ double integrate (vector <double> function, int N, int M){
     
 }
 
-double integratedV (vector <double> function, int N, int M){
+double integratedV (double *function, int N, int M){
     
     double result=0.0;
     
@@ -37,7 +37,7 @@ double integratedV (vector <double> function, int N, int M){
 }
 
 
-double integrate2d (Matrix function, int N, int M, int k){
+double integrate2d (double **function, int N, int M, int k){
     
     double result=0.0;
     
@@ -54,7 +54,7 @@ double integrate2d (Matrix function, int N, int M, int k){
     
 }
 
-double integrate2d_dV (Matrix function, int N, int M, int k){
+double integrate2d_dV (double **function, int N, int M, int k){
     
     double result=0.0;
     

@@ -1,6 +1,6 @@
 /**********Here I calculate three chain partition functions by integrating over space****************/
 
-double q_partition(Matrix &qB1,Matrix &qA3,Matrix &qC,vector <int> &Ns, vector <double> &mu, double volume){
+double q_partition(double **qB1,double **qA3,double **qC,int *Ns,double *mu, double volume){
     
     double Q,Q_AB,Q_C,Q_ABA;
  

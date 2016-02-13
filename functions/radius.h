@@ -1,5 +1,5 @@
 //Here I set the inner radius of the computation cell
-void set_radius(vector <double> &r_0vector, int nradii){
+void set_radius(double *r_0vector, int nradii){
     
     double curvature=0.5;
     double dcurv = curvature/(double)nradii;

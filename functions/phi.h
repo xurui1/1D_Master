@@ -1,4 +1,4 @@
-void phi_total(Matrix phi, double volume){
+void phi_total(double **phi, double volume){
     
     //Here I am calculating the total concentration of each species using a trapezoidal (?) rule.
     //This is an ugly function, and I'd like to rewrite it
@@ -30,7 +30,7 @@ void phi_total(Matrix phi, double volume){
 
 
 /***************Here I calculate the various concentration profiles from the propagators******************/
-void phi_calc(Matrix &phi,Matrix qA1,Matrix qdagA1,Matrix qB1,Matrix qdagB1,Matrix qA2,Matrix qB2,Matrix qA3,Matrix qC,vector <int> Ns,vector <double> mu){
+void phi_calc(double **phi,double **qA1,double **qdagA1,double **qB1,double **qdagB1,double **qA2,double **qB2,double **qA3,double **qC,int *Ns,double *mu){
 
     
     for(int i=0;i<Nr;i++){
@@ -118,7 +118,7 @@ void phi_calc(Matrix &phi,Matrix qA1,Matrix qdagA1,Matrix qB1,Matrix qdagB1,Matr
 }
 
 /************Here I calculate the diblock/triblock order parameter************/
-double calcOP(Matrix phi, double volume){
+double calcOP(double **phi, double volume){
     
     //define average concentrations
     double phi_ABA;
@@ -143,7 +143,7 @@ double calcOP(Matrix phi, double volume){
 }
 
 //calculate centre hydrophobic maximum
-int mmbcentre(Matrix phi){
+int mmbcentre(double **phi){
     int imax;
     double phiB1B2,phiB1B2new;
     imax=0;
@@ -163,7 +163,7 @@ int mmbcentre(Matrix phi){
 }
 
 //calculate right hydrophilic maximum
-int mmbright(Matrix phi,int imax){
+int mmbright(double **phi,int imax){
     int iright=imax;
     double phiA1A2A3,phiA1A2A3new;
     
@@ -183,7 +183,7 @@ int mmbright(Matrix phi,int imax){
 }
 
 //calculate left hydrophobic maximum
-int mmbleft(Matrix phi,int imax){
+int mmbleft(double **phi,int imax){
     int ileft=imax;
     double phiA1A2A3,phiA1A2A3new;
     
@@ -203,7 +203,7 @@ int mmbleft(Matrix phi,int imax){
 }
 
 //calculate the midpoint between the two locations where phiA = phi B
-int mmb_half(Matrix phi, int imax, int pin){
+int mmb_half(double **phi, int imax, int pin){
     
     //int pin is the pinning location, which is predetermined
     

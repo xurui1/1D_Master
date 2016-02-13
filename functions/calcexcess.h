@@ -1,4 +1,4 @@
-double calc_excess(Matrix phi, double volume){
+double calc_excess(double **phi, double volume){
     
     double Omega=0.0;
     

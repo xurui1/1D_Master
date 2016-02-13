@@ -1,5 +1,5 @@
 /****************Here I output the concentration profile for plotting***********************/
-void output(Matrix phi){
+void output(double **phi){
     
     int i;
     ofstream outputFile1("./results/phi.dat");
@@ -13,7 +13,7 @@ void output(Matrix phi){
 }
 
 /*******************Here I output concentration profile for various radii***********************/
-void outputphi(Matrix phi){
+void outputphi(double **phi){
     
     ofstream outphi;
     string filename;
@@ -48,7 +48,7 @@ void outputphi(Matrix phi){
 }
 
 /*************************Here I output quadratic and quartic fit parameters****************************************/
-void outputkappa(vector <double> a1,vector <double> a2,vector <double> a3,vector <double> a4,vector <double> a5, vector <double> a6, int nfa,vector <double> chi, int rad_type){
+void outputkappa(double *a1,double *a2,double *a3,double *a4,double *a5,double *a6, int nfa,double *chi, int rad_type){
     
     ofstream outkappa;
     string filename;
@@ -82,7 +82,7 @@ void outputkappa(vector <double> a1,vector <double> a2,vector <double> a3,vector
 }
 
 /***************Here I output a concentration profile**********************/
-void outputphi_fa(Matrix phi, double fA, int nfa){
+void outputphi_fa(double **phi, double fA, int nfa){
     
     ofstream outphifa;
     string filename;
@@ -125,7 +125,7 @@ void outputphi_fa(Matrix phi, double fA, int nfa){
     
 }
 
-void outputfE_FA(double fA, vector <double> Curv, vector <double> dFE,int nradii){
+void outputfE_FA(double fA,double *Curv,double *dFE,int nradii){
     
     fstream outfE_FA;
     string filename;

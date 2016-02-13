@@ -1,5 +1,5 @@
 //Need to add proper comments
-void curvefit(vector <double> &x, vector <double> y,int n,int counter, vector <double> &a1,vector <double> &a2,vector <double> &a3){
+void curvefit(double *x, double *y,int n,int counter, double *a1,double *a2,double *a3){
 
     double sum[10];
     double mat[3][4];

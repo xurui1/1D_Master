@@ -1,6 +1,6 @@
 /****************************Here I set some parameters *****************************/
 
-void parameters(vector <double> &chi,vector <double> &f, vector <int> &Ns, vector <double> &mu){
+void parameters(double *chi,double *f,int *Ns,double *mu){
     
     //inner box radius
     r_0=1.0;
@@ -91,7 +91,7 @@ void parameters(vector <double> &chi,vector <double> &f, vector <int> &Ns, vecto
 
 /****************Here I build the interaction Matrix************/
 
-void Xmatrix(Matrix &chiMatrix, vector <double> &chi){
+void Xmatrix(double **chiMatrix,double *chi){
     //Interaction Matrix
     chiMatrix[0][0]=0.0;    //ChiA1,A1
     chiMatrix[0][1]=chi[0]; //ChiA1,B1
@@ -140,7 +140,7 @@ void Xmatrix(Matrix &chiMatrix, vector <double> &chi){
 
 /******Here I update parameters for looping through fA*******/
 
-void updateparameters(vector <double> &f, vector <int> &Ns, int dds){
+void updateparameters(double *f,int *Ns, int dds){
     
     //Chain length array
     Ns[0]=60+dds;

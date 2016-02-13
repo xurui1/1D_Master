@@ -1,6 +1,6 @@
-void mod_phi(vector<double> &f,vector <double> &mu,Matrix &chiMatrix,Matrix &w,Matrix &phi,vector <double> eta,vector <int> &Ns,vector <double> &chi, int nfa,vector <double> &A, vector <double> &B, vector <double> &C, int nradii, vector <double> &dFE, vector <double> &mu_vec){
+void mod_phi(double *f,double *mu,double **chiMatrix,double **w,double **phi,double *eta,int *Ns,double *chi, int nfa,double *A,double *B,double *C, int nradii,double *dFE,double *mu_vec){
     
-    vector <double> r_0vector(nradii+1);
+    double *r_0vector= create_1d_double_array(nradii+1,"r_0vector");
     
     int counter=0;
     double volume,diameter;
@@ -33,7 +33,7 @@ void mod_phi(vector<double> &f,vector <double> &mu,Matrix &chiMatrix,Matrix &w,M
         omega(w);
             
         //calculate free energy minus homogeneneous free energy
-        dFE[0]=FreeEnergy(w,phi,eta,Ns,chi,chiMatrix,mu,volume,f,pin,1);
+        dFE[0]=FreeEnergy(w,phi,eta,Ns,chi,chiMatrix,mu,f,pin,1);
         OP = calcOP(phi,volume);                    //calculate order parameter
         diameter = calc_excess(phi,volume); //calculate copolymer excess
             

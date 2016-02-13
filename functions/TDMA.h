@@ -3,7 +3,7 @@
 ************* Wikipedia algorithms c++ ************************/
 
 
-void TDMA(vector <double> &d, int n,vector <double> &a, vector <double> &b, vector <double> &c) {
+void TDMA(double *d, int n,double *a,double *b,double *c) {
 
     n--; // since we start from x0 (not x1)
     c[0] /= b[0];

@@ -1,6 +1,6 @@
 /*********Here I include an incompressibility function and a pinning function*******/
 
-void Incomp(vector <double> &eta, Matrix phi,vector  <double> &delphi){
+void Incomp(double *eta,double **phi,double *delphi){
     
     double  ptot=0.0; //total concentration
     
@@ -26,7 +26,7 @@ void Incomp(vector <double> &eta, Matrix phi,vector  <double> &delphi){
 }
 
 
-void Pin(vector <double> &sigma, Matrix phi, int pin_location){
+void Pin(double *sigma,double **phi, int pin_location){
     
     //Implement pinning condition
     for (int i=0;i<Nr;i++){

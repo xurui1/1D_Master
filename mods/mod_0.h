@@ -1,5 +1,5 @@
 /*********************A simple test function to run SCFT*************************************************/
-void mod_0 (vector <double> &f,vector <double> &mu,Matrix &chiMatrix,Matrix &w,Matrix &phi,vector <double> &eta,vector <int> &Ns,vector <double> &chi){
+void mod_0 (double *f,double *mu,double **chiMatrix,double **w,double **phi,double *eta,int *Ns,double *chi){
 
     //fA = fB = 0.5
     for (int i=0;i<ChainType-1;i++){
@@ -21,7 +21,7 @@ void mod_0 (vector <double> &f,vector <double> &mu,Matrix &chiMatrix,Matrix &w,M
     double volume=vol();
     
     //calculate free energy minus homogeneneous free energy
-    double dFE=FreeEnergy(w,phi,eta,Ns,chi,chiMatrix,mu,volume,f,2*Nr/5,0);
+    double dFE=FreeEnergy(w,phi,eta,Ns,chi,chiMatrix,mu,f,2*Nr/5,0);
     
     end = high_resolution_clock::now();
     duration<double> measured_time = end-beginning;

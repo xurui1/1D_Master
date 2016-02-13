@@ -1,6 +1,6 @@
 /**************This is my function for calculating free energy from SCFT******/
 
-double fE(Matrix newW, Matrix phi, Matrix chiMatrix, double volume){
+double fE(double **newW,double **phi,double **chiMatrix, double volume){
     
     double fEW,fEchi;
     double fE_int;

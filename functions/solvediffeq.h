@@ -12,7 +12,7 @@ double rterm(int i){
 
 
 //Build LHS matrix
-void Matrix_r(vector <double> w, vector <double> &rmid, vector <double> &rupper, vector <double> &rlower){
+void Matrix_r(double *w,double *rmid,double *rupper,double *rlower){
     int i;
     
     for (i=0;i<Nr;i++){
@@ -31,17 +31,16 @@ void Matrix_r(vector <double> w, vector <double> &rmid, vector <double> &rupper,
 
 
 //Apply Crank-Nicolson method to solve the modified diffusion equation
-void solvediffyQ(Matrix &q,vector <double> &w, int Ns){
+void solvediffyQ(double **q,double *w, int Ns){
 
     double gamma, betaL, betaU;
     
     //Allocate memory for `matrix' operations
     
-    vector <double> bvecr(Nr);
-    vector <double> rmid(Nr);
-    vector <double> rupper(Nr);
-    vector <double> rlower(Nr);
- 
+    double *bvecr=create_1d_double_array(Nr,"bvecr");
+    double *rupper=create_1d_double_array(Nr,"rupper");
+    double *rmid=create_1d_double_array(Nr,"rmid");
+    double *rlower=create_1d_double_array(Nr,"rmid");
 
     for (int s=1;s<(int)Ns+1;s++){
     
@@ -81,6 +80,11 @@ void solvediffyQ(Matrix &q,vector <double> &w, int Ns){
 
     }
 
+    destroy_1d_double_array(bvecr);
+    destroy_1d_double_array(rupper);
+    destroy_1d_double_array(rmid);
+    destroy_1d_double_array(rlower);
+    
 }
 
 

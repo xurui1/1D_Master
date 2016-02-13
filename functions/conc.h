@@ -1,25 +1,8 @@
-double Conc(Matrix &phi,Matrix &w,vector <int> &Ns,vector <double> &mu, double volume, vector <double> &loop,  int out_loop, int iter,int pin_location){
+double Conc(double **phi,double **w,int *Ns,double *mu, double volume, double *loop,  int out_loop, int iter,int pin_location, double **qA1,double **qB1,double **qA2,double **qB2,double **qA3,double **qC,double **qdagA1,double **qdagB1,double **qA2LoopLeft,double **qB2LoopLeft,double **qA2LoopRight,double **qB2LoopRight){
     
     double      Q;
     
-    //Forwards propagators
-    Matrix qA1(Nr, Row(Ns[0]+1));
-    Matrix qB1(Nr, Row(Ns[1]+1));
-    Matrix qA2(Nr, Row(Ns[2]+1));
-    Matrix qB2(Nr, Row(Ns[3]+1));
-    Matrix qA3(Nr, Row(Ns[4]+1));
-    Matrix qC(Nr, Row(Ns[5]+1));
     
-    //Complementary propagators
-    Matrix qdagA1(Nr, Row(Ns[0]+1));
-    Matrix qdagB1(Nr, Row(Ns[1]+1));
-    
-    //Looping propagators
-    Matrix qA2LoopLeft(Nr,Row(Ns[2]+1));
-    Matrix qB2LoopLeft(Nr,Row(Ns[3]+1));
-    Matrix qA2LoopRight(Nr,Row(Ns[2]+1));
-    Matrix qB2LoopRight(Nr,Row(Ns[3]+1));
-
     //solve diffusion equations
     diblock(qA1,qdagA1,qB1,qdagB1,w,Ns);
     triblock(qA2,qB2,qA3,w,Ns);

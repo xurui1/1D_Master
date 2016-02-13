@@ -1,6 +1,6 @@
 /*************************This is my main function for calculating free energies*************************/
 
-double FreeEnergy(Matrix &w, Matrix &phi, vector <double> &eta, vector <int> &Ns,vector <double> &chi,  Matrix chiMatrix, vector <double> &mu, double volume, vector <double> &f, int pin_location, int out_loop){
+double FreeEnergy(double **w, double **phi, double *eta, int *Ns,double *chi,double **chiMatrix,double *mu,double *f, int pin_location, int out_loop){
     
     
     double  currentfE, oldfE, deltafE;
@@ -12,15 +12,36 @@ double FreeEnergy(Matrix &w, Matrix &phi, vector <double> &eta, vector <int> &Ns
     double  deltaW;
     double fE_hom = homogfE(mu,chiMatrix,f);
 
+    double volume = vol();
     
     //Arrays for updating the omega fields
-    Matrix delW(ChainType,Row(Nr));
-    Matrix newW(ChainType,Row(Nr));
-
-    vector <double> delphi(Nr);
-    vector <double>sigma(Nr);
-    vector <double>loop(2);
+    double **delW=create_2d_double_array(ChainType,Nr,"delW");
+    double **newW=create_2d_double_array(ChainType,Nr,"newW");
     
+    //allocate normal propagators
+    double **qA1=create_2d_double_array(Nr,Ns[0]+1,"qA1");
+    double **qB1=create_2d_double_array(Nr,Ns[1]+1,"qB1");
+    double **qA2=create_2d_double_array(Nr,Ns[2]+1,"qA1");
+    double **qB2=create_2d_double_array(Nr,Ns[3]+1,"qB1");
+    double **qA3=create_2d_double_array(Nr,Ns[4]+1,"qB1");
+    double **qC=create_2d_double_array(Nr,Ns[5]+1,"qB1");
+    
+    //allocate complementary propagators for diblock
+    double **qdagA1=create_2d_double_array(Nr,Ns[0]+1,"qdagA1");
+    double **qdagB1=create_2d_double_array(Nr,Ns[1]+1,"qdagB1");
+
+
+    //allocate looping propagators
+    double **qA2LoopLeft=create_2d_double_array(Nr,Ns[2]+1,"qA1LoopLeft");
+    double **qB2LoopLeft=create_2d_double_array(Nr,Ns[3]+1,"qB1LoopLeft");
+    double **qA2LoopRight=create_2d_double_array(Nr,Ns[2]+1,"qA1LoopRight");
+    double **qB2LoopRight=create_2d_double_array(Nr,Ns[3]+1,"qB1LoopRight");
+
+
+    double *delphi=create_1d_double_array(Nr,"delphi");
+    double *sigma = create_1d_double_array(Nr, "sigma");
+    double *loop = create_1d_double_array(2,"loop");
+   
     //set energies to zero
     currentfE=0.0;
     deltafE=0.0;
@@ -37,7 +58,7 @@ double FreeEnergy(Matrix &w, Matrix &phi, vector <double> &eta, vector <int> &Ns
         deltaW=0.0;
 
         
-        Q=Conc(phi,w,Ns,mu,volume,loop,out_loop,iter, pin_location);      //Calculate Chain partition functions
+        Q=Conc(phi,w,Ns,mu,volume,loop,out_loop,iter, pin_location,qA1,qB1,qA2,qB2,qA3,qC,qdagA1,qdagB1,qA2LoopLeft,qB2LoopLeft,qA2LoopRight,qB2LoopRight);      //Calculate Chain partition functions
         
         
         Incomp(eta,phi,delphi);           //Enforce incompressibility condition
@@ -109,6 +130,22 @@ double FreeEnergy(Matrix &w, Matrix &phi, vector <double> &eta, vector <int> &Ns
         outputloop <<4.3/(r_0+imax*dr)<<" "<<loop[0]<<" "<<loop[1]<<" "<<0.5*(loop[0]+loop[1])<< endl;
         outputloop.close();
     }
+    
+    destroy_1d_double_array(loop);
+    destroy_2d_double_array(newW);
+    destroy_1d_double_array(sigma);
+    destroy_1d_double_array(delphi);
+    destroy_2d_double_array(qA1);
+    destroy_2d_double_array(qA2);
+    destroy_2d_double_array(qA3);
+    destroy_2d_double_array(qB1);
+    destroy_2d_double_array(qB2);
+    destroy_2d_double_array(qC);
+    destroy_2d_double_array(qA2LoopLeft);
+    destroy_2d_double_array(qA2LoopRight);
+    destroy_2d_double_array(qB2LoopLeft);
+    destroy_2d_double_array(qB2LoopRight);
+    
     
  
     

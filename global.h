@@ -8,6 +8,7 @@
 #include <cmath>      //Use the math function libraries
 #include <ctime>
 #include <chrono>
+#include "./functions/smemory.h"
 
 using namespace std;
 using namespace chrono;
