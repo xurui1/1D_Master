@@ -32,9 +32,7 @@ double FreeEnergy(double **w, double **phi, double *eta, int *Ns,double *chi,dou
 
 
     //allocate looping propagators
-    double **qA2LoopLeft=create_2d_double_array(Nr,Ns[2]+1,"qA1LoopLeft");
     double **qB2LoopLeft=create_2d_double_array(Nr,Ns[3]+1,"qB1LoopLeft");
-    double **qA2LoopRight=create_2d_double_array(Nr,Ns[2]+1,"qA1LoopRight");
     double **qB2LoopRight=create_2d_double_array(Nr,Ns[3]+1,"qB1LoopRight");
 
 
@@ -58,12 +56,12 @@ double FreeEnergy(double **w, double **phi, double *eta, int *Ns,double *chi,dou
         deltaW=0.0;
 
         
-        Q=Conc(phi,w,Ns,mu,volume,loop,out_loop,iter, pin_location,qA1,qB1,qA2,qB2,qA3,qC,qdagA1,qdagB1,qA2LoopLeft,qB2LoopLeft,qA2LoopRight,qB2LoopRight);      //Calculate Chain partition functions
+        Q=Conc(phi,w,Ns,mu,volume,loop,out_loop,iter, pin_location,qA1,qB1,qA2,qB2,qA3,qC,qdagA1,qdagB1,qB2LoopLeft,qB2LoopRight);      //Calculate Chain partition functions
         
         
         Incomp(eta,phi,delphi);           //Enforce incompressibility condition
         
-        if (iter%1000==0){
+        if (iter%100==0){
             output(phi);                   //Output concentration data to file
         }
         
@@ -141,8 +139,6 @@ double FreeEnergy(double **w, double **phi, double *eta, int *Ns,double *chi,dou
     destroy_2d_double_array(qB1);
     destroy_2d_double_array(qB2);
     destroy_2d_double_array(qC);
-    destroy_2d_double_array(qA2LoopLeft);
-    destroy_2d_double_array(qA2LoopRight);
     destroy_2d_double_array(qB2LoopLeft);
     destroy_2d_double_array(qB2LoopRight);
     

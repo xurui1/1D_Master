@@ -21,23 +21,21 @@ void secant(double **w,double **phi,double *eta,int *Ns,double *chi,double **chi
     double **newW=create_2d_double_array(ChainType,Nr,"newW");
     
     //allocate normal propagators
-    double **qA1=create_2d_double_array(Nr,Ns[0],"qA1");
-    double **qB1=create_2d_double_array(Nr,Ns[1],"qB1");
-    double **qA2=create_2d_double_array(Nr,Ns[2],"qA1");
-    double **qB2=create_2d_double_array(Nr,Ns[3],"qB1");
-    double **qA3=create_2d_double_array(Nr,Ns[4],"qB1");
-    double **qC=create_2d_double_array(Nr,Ns[5],"qB1");
+    double **qA1=create_2d_double_array(Nr,Ns[0]+1,"qA1");
+    double **qB1=create_2d_double_array(Nr,Ns[1]+1,"qB1");
+    double **qA2=create_2d_double_array(Nr,Ns[2]+1,"qA1");
+    double **qB2=create_2d_double_array(Nr,Ns[3]+1,"qB1");
+    double **qA3=create_2d_double_array(Nr,Ns[4]+1,"qB1");
+    double **qC=create_2d_double_array(Nr,Ns[5]+1,"qB1");
     
     //allocate complementary propagators for diblock
-    double **qdagA1=create_2d_double_array(Nr,Ns[0],"qdagA1");
-    double **qdagB1=create_2d_double_array(Nr,Ns[1],"qdagB1");
+    double **qdagA1=create_2d_double_array(Nr,Ns[0]+1,"qdagA1");
+    double **qdagB1=create_2d_double_array(Nr,Ns[1]+1,"qdagB1");
     
     
     //allocate looping propagators
-    double **qA2LoopLeft=create_2d_double_array(Nr,Ns[2],"qA1LoopLeft");
-    double **qB2LoopLeft=create_2d_double_array(Nr,Ns[3],"qB1LoopLeft");
-    double **qA2LoopRight=create_2d_double_array(Nr,Ns[2],"qA1LoopRight");
-    double **qB2LoopRight=create_2d_double_array(Nr,Ns[3],"qB1LoopRight");
+    double **qB2LoopLeft=create_2d_double_array(Nr,Ns[3]+1,"qB1LoopLeft");
+    double **qB2LoopRight=create_2d_double_array(Nr,Ns[3]+1,"qB1LoopRight");
     
     
     double *delphi=create_1d_double_array(Nr,"delphi");
@@ -68,7 +66,7 @@ void secant(double **w,double **phi,double *eta,int *Ns,double *chi,double **chi
         deltaW=0.0;
         
         
-        Q=Conc(phi,w,Ns,mu,volume,loop,0,iter, pin_location,qA1,qB1,qA2,qB2,qA3,qC,qdagA1,qdagB1,qA2LoopLeft,qB2LoopLeft,qA2LoopRight,qB2LoopRight);       //Calculate Chain partition functions
+        Q=Conc(phi,w,Ns,mu,volume,loop,0,iter, pin_location,qA1,qB1,qA2,qB2,qA3,qC,qdagA1,qdagB1,qB2LoopLeft,qB2LoopRight);       //Calculate Chain partition functions
         
         
         Incomp(eta,phi,delphi);              //Enforce incompressibility condition
@@ -166,8 +164,6 @@ void secant(double **w,double **phi,double *eta,int *Ns,double *chi,double **chi
     destroy_2d_double_array(qB1);
     destroy_2d_double_array(qB2);
     destroy_2d_double_array(qC);
-    destroy_2d_double_array(qA2LoopLeft);
-    destroy_2d_double_array(qA2LoopRight);
     destroy_2d_double_array(qB2LoopLeft);
     destroy_2d_double_array(qB2LoopRight);
     

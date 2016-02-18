@@ -12,12 +12,13 @@ double q_partition(double **qB1,double **qA3,double **qC,int *Ns,double *mu, dou
     Q_ABA=exp(mu[2]*kappa_ABA)*Q_ABA/kappa_ABA;
     Q_C=(exp(mu[5]*kappaC)*Q_C)/kappaC;
     
+    //cout<<Q_ABA/volume<<" "<<Q_AB/volume<<" "<<Q_C/volume<<endl;
     //I'm adding the three single chain partition functions together for the return function
     Q=Q_AB+Q_C+Q_ABA;
     
     // Normalizing with respect to box volume
     Q/=volume;
-    
+    //cout<<Q<<endl;
     
     return Q;
 }

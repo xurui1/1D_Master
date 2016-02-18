@@ -15,7 +15,7 @@ using namespace chrono;
 
 
 #define Nr 200
-#define Ds 200
+#define Ds 100
 #define ChainType 6
 #define Pi 3.14159
 
@@ -29,8 +29,8 @@ int Coord;
 int poly;
 
 //define my update parameters
-double gamma_up = 0.05;
-double epsilon_up = 0.05;
+double gamma_up = 0.01;
+double epsilon_up = 0.01;
 //set to 0.05 for chi<30
 //set to 0.005 for 30<chi<40
 

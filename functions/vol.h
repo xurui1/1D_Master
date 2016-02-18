@@ -34,16 +34,16 @@ double vol(){
     
 }
 
-double Ucellvol_left(){
+double Ucellvol_left(int i){
     //Volume
     if (Coord==1){
-        return ((double)Nr/2.0-1.0)*pow(dr,3.0);        //Cartesian
+        return ((double)i-1.0)*pow(dr,3.0);        //Cartesian
     }
     else if (Coord==2){
-        return (1.0/2.0)*(pow(r_0+((double)Nr/2.0-1.0)*dr,2.0)-pow(r_0,2.0))*pow(dr,2.0); //cylindrical
+        return (1.0/2.0)*(pow(r_0+((double)i-1.0)*dr,2.0)-pow(r_0,2.0))*pow(dr,2.0); //cylindrical
     }
     else if (Coord==3){
-        return (1.0/3.0)*(pow(r_0+((double)Nr/2.0-1.0)*dr,3.0)-pow(r_0,3.0))*pow(dr,2.0); //spherical
+        return (1.0/3.0)*(pow(r_0+((double)i-1.0)*dr,3.0)-pow(r_0,3.0))*pow(dr,2.0); //spherical
     }
     else{
         cout<<"Choose another integer for Coordinate"<<endl;
@@ -51,16 +51,16 @@ double Ucellvol_left(){
     }
     
 }
-double Ucellvol_right(){
+double Ucellvol_right(int i){
     //Volume
     if (Coord==1){
-        return ((double)Nr/2.0-1.0)*pow(dr,3.0);        //Cartesian
+        return ((double)i-1.0)*pow(dr,3.0);        //Cartesian
     }
     else if (Coord==2){
-        return (1.0/2.0)*(pow(r_0+((double)Nr-1.0)*dr,2.0)-pow(r_0+((double)Nr/2.0-1.0)*dr,2.0))*pow(dr,2.0); //cylindrical
+        return (1.0/2.0)*(pow(r_0+((double)Nr-1.0)*dr,2.0)-pow(r_0+((double)i-1.0)*dr,2.0))*pow(dr,2.0); //cylindrical
     }
     else if (Coord==3){
-        return (1.0/3.0)*(pow(r_0+((double)Nr-1.0)*dr,3.0)-pow(r_0+((double)Nr/2.0-1.0)*dr,3.0))*pow(dr,2.0); //spherical
+        return (1.0/3.0)*(pow(r_0+((double)Nr-1.0)*dr,3.0)-pow(r_0+((double)i-1.0)*dr,3.0))*pow(dr,2.0); //spherical
     }
     else{
         cout<<"Choose another integer for Coordinate"<<endl;

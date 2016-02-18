@@ -24,4 +24,4 @@ Mod 4: calculate the membrane width for fA = 0.3 - 0.7.
 Mod 5: output specific looping fractions for fA = 0.3, 0.4, 0.5, 0.6, and 0.7. 
 
 In order to compile the code, simply write ‘make’. In order to run the code, enter
- ‘./main arg1 arg2 arg3’. Arg 1 is the geometry: P is planar, C is cylindrical, S is spherical. Arg 2 is the types of polymer in the system: T is triblock, D is diblock, and B is a blend of moth. 
+ ‘./main arg1 arg2 arg3’. Arg 1 is the geometry: P is planar, C is cylindrical, S is spherical. Arg 2 is the types of polymer in the system: T is triblock, D is diblock, and B is a blend of moth. Arg 3 is the module that will run. 

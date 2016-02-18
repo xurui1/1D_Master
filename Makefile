@@ -1,4 +1,4 @@
-LFLAGS = -lm  -O3 -std=c++11
+LFLAGS = -lm  -O3 -stdc++0x
 
 main: main.cpp 
-	g++ $(LFLAGS) -o $@ $(MOBLIB) main.cpp $(LIBS)
+	c++ $(LFLAGS) -o $@ $(MOBLIB) main.cpp $(LIBS)

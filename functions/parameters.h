@@ -5,8 +5,8 @@ void parameters(double *chi,double *f,int *Ns,double *mu){
     //inner box radius
     r_0=1.0;
     
-    //initial settings
-    initial=3;
+
+    initial = 3;
     
     double chi_input;
     
@@ -23,9 +23,6 @@ void parameters(double *chi,double *f,int *Ns,double *mu){
     chi[2]=0.0;         //Chi_AC
     
     cout<<"Chi input:"<<chi_input<<endl;
-    
-    //Type of system
-    //poly=0;
     
     //Chemical potential array
     if (poly==0){
@@ -54,8 +51,8 @@ void parameters(double *chi,double *f,int *Ns,double *mu){
     }
     
     //Chain length array
-    Ns[0]=60;            //A1 blocks
-    Ns[1]=140;            //B1 blocks
+    Ns[0]=0.4*Ds;            //A1 blocks
+    Ns[1]=Ds-Ns[0];            //B1 blocks
     Ns[2]=Ns[0];        //A2 block
     Ns[3]=2*Ns[1];      //B2 blocks
     Ns[4]=Ns[0];        //A3 blocks
@@ -68,10 +65,10 @@ void parameters(double *chi,double *f,int *Ns,double *mu){
     //Chain fraction array
     f[0]=(double)Ns[0]/diblock;      //A1
     f[1]=(double)Ns[1]/diblock;      //B1
-    f[2]=(double)Ns[2]/triblock;
-    f[3]=(double)Ns[3]/triblock;
-    f[4]=(double)Ns[4]/triblock;
-    f[5]=(double)Ns[5]/homopoly;
+    f[2]=(double)Ns[2]/triblock;     //A2
+    f[3]=(double)Ns[3]/triblock;     //B2
+    f[4]=(double)Ns[4]/triblock;     //A3
+    f[5]=(double)Ns[5]/homopoly;     //C
     
     //Length ratio of c homopolymer to diblock copolymer
     kappaC=homopoly/diblock;
@@ -143,19 +140,19 @@ void Xmatrix(double **chiMatrix,double *chi){
 void updateparameters(double *f,int *Ns, int dds){
     
     //Chain length array
-    Ns[0]=60+dds;
-    Ns[1]=140-dds;
-    Ns[2]=60+dds;
-    Ns[3]=2*(140-dds);
-    Ns[4]=60+dds;
+    Ns[0]=0.4*Ds+dds;
+    Ns[1]=Ds-Ns[0];
+    Ns[2]=Ns[0];
+    Ns[3]=2*Ns[1];
+    Ns[4]=Ns[0];
     Ns[5]=Ds;
     
     //Chain fraction array
     f[0]=(double)Ns[0]/(double)Ds;    //A
     f[1]=(double)Ns[1]/(double)Ds;  //B
-    f[2]=f[0];
+    f[2]=f[0]/2.0;
     f[3]=f[1];
-    f[4]=f[0];
+    f[4]=f[0]/2.0;
 
     
 }

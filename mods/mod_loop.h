@@ -13,10 +13,10 @@ void mod_loop(double *f,double *mu,double **chiMatrix,double **w,double **phi,do
     double displacer;
     
     int counter=0;
-    int ds_increment = 20;
+    int ds_increment = 0.1*Ds;
     
     
-    for (int dds=0;f[0]<=0.7;dds+=ds_increment){
+    for (int dds=0;f[0]<=0.6;dds+=ds_increment){
         double avgmiddle=0.0,avghalf=0.0;
 
         updateparameters(f,Ns,dds);
@@ -27,8 +27,10 @@ void mod_loop(double *f,double *mu,double **chiMatrix,double **w,double **phi,do
         secant(w,phi,eta,Ns,chi,chiMatrix,mu,f,2*Nr/5);  //Find tensionless mmb
         mu_calc[counter]=mu[5];
         r_0 = 1.0;
-        for (int radius=0;radius<4;radius++){
+        for (int radius=0;radius<5;radius++){
             omega(w);
+            displacer=FreeEnergy(w,phi,eta,Ns,chi,chiMatrix,mu,f,2*Nr/5,1);
+
             int imax=mmbcentre(phi);
             int ihalf=mmb_half(phi,imax,2*Nr/5);
             avgmiddle+=(double)imax*dr;
@@ -45,6 +47,7 @@ void mod_loop(double *f,double *mu,double **chiMatrix,double **w,double **phi,do
     curvefit(fA,rad_test,5,1,A,B,C);
     
     counter =0;
+    
     for (int dds=0; f[0]<=0.7 ;dds+= ds_increment){
         //Set parameters
         updateparameters(f,Ns,dds);
@@ -52,13 +55,11 @@ void mod_loop(double *f,double *mu,double **chiMatrix,double **w,double **phi,do
         omega(w);                                       //Initiate omega field
         mu[5] = mu_calc[counter];
         
-        double volume=vol();                                 //calculate volume
         
         set_radius(r_0vector,nradii);
         
         for (int radius=0;radius<nradii;radius++){
             radius = r_0vector[radius];
-            double volume=vol();
             omega(w);
             double pin_location=10.8-A[0]-(B[0]*f[0])-(C[0]*f[0]*f[0]);
 

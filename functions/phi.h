@@ -8,8 +8,8 @@ void phi_total(double **phi, double volume){
     
     //integrate concentrations and normalize by volume
     for (int j=0;j<ChainType;j++){
-        phi_tot[j] = integratedV(phi[j],0,Nr);
-        phi_tot[j] /= volume;
+        phi_tot[j]=0.0;
+        phi_tot[j] = integrate(phi[j],0,Nr);
     }
     
     
