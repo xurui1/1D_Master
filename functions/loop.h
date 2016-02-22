@@ -2,7 +2,7 @@
 
 void calcloop(double **qA2,double **qB2LL,double **qB2LR,double **qA3,int *Ns,double **w,double *mu,int imax,double *loop){
     
-    double Q_ABA;
+    double Q_ABA=0.0;
 
     //reset looping fractions
     loop[0]=0.0;
@@ -25,28 +25,23 @@ void calcloop(double **qA2,double **qB2LL,double **qB2LR,double **qA3,int *Ns,do
     solvediffyQ(qB2LL,w[3],Ns[3]);
     solvediffyQ(qB2LR,w[3],Ns[3]);
     
-    //Calculate ABA chain partition function
-    Q_ABA=integrate2d_dV(qA3,0,Nr,Ns[4]);       //integrate
-    Q_ABA = exp(mu[2]*kappa_ABA)*Q_ABA/(kappa_ABA);         //G-C relation
-    cout<<Q_ABA<<endl;
-    
 
     //Calculate probability of looping
     for (int i=0;i<=imax;i++){
-        double term =((qB2LL[i][Ns[3]])*(qA2[i][Ns[2]])*dV(i))/Q_ABA;
+        double term =((qB2LL[i][Ns[3]])*(qA2[i][Ns[2]])*dV(i));
         loop[0]+=term;
     }
     for (int i=imax;i<Nr;i++){
-        double term = ((qB2LR[i][Ns[3]])*(qA2[i][Ns[2]])*dV(i))/Q_ABA;
+        double term = ((qB2LR[i][Ns[3]])*(qA2[i][Ns[2]])*dV(i));
         loop[1]+=term;
     }
-    double unconfined=0.0;
     for (int i=0;i<Nr;i++){
-        unconfined += qA3[i][0]*qA2[i][Ns[2]]*dV(i)/Q_ABA;
+        Q_ABA += qA3[i][0]*qA2[i][Ns[2]]*dV(i);
+
     }
     
-    loop[0]/=unconfined;
-    loop[1]/=unconfined;
+    loop[0]/=Q_ABA;
+    loop[1]/=Q_ABA;
 
 }
 

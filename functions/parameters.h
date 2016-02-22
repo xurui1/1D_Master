@@ -51,7 +51,7 @@ void parameters(double *chi,double *f,int *Ns,double *mu){
     }
     
     //Chain length array
-    Ns[0]=0.4*Ds;            //A1 blocks
+    Ns[0]=0.3*Ds;            //A1 blocks
     Ns[1]=Ds-Ns[0];            //B1 blocks
     Ns[2]=Ns[0];        //A2 block
     Ns[3]=2*Ns[1];      //B2 blocks
